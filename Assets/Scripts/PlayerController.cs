@@ -6,14 +6,15 @@ public class PlayerController : MonoBehaviour
 {
     private float _velocity = 5f;
 
-    void Start()
+    private void Start()
     {
         transform.position = Vector3.zero; // start player in the center
     }
 
-    void Update()
+    private void Update()
     {
         MovePlayer();
+        OnKeyPressed();
     }
 
     private void MovePlayer()
@@ -27,6 +28,22 @@ public class PlayerController : MonoBehaviour
         {
             // when idle, direction will be zero, so anything * 0 = 0
             transform.Translate(direction * _velocity * Time.deltaTime);
+        }
+    }
+
+    private void OnTriggerEnter2D(Collider2D collision)
+    {
+        if (collision.gameObject.tag == "Enemy") 
+        { 
+            Debug.Log("funcionou");
+        }
+    }
+
+    private void OnKeyPressed()
+    {
+        if (Input.GetKeyDown(KeyCode.A) || Input.GetKeyDown(KeyCode.W))
+        {
+            Debug.Log("TIRO");
         }
     }
 }
