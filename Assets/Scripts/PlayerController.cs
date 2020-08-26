@@ -4,7 +4,13 @@ using UnityEngine;
 
 public class PlayerController : MonoBehaviour
 {
-    private float _velocity = 5f;
+    private float velocity = 5f;
+
+    [SerializeField]
+    private GameObject bullet;
+
+    [SerializeField]
+    private GameObject scoreManager;
 
     private void Start()
     {
@@ -19,15 +25,15 @@ public class PlayerController : MonoBehaviour
 
     private void MovePlayer()
     {
-        float verticalInput = Input.GetAxis("Vertical");
+        //float verticalInput = Input.GetAxis("Vertical");
         float horizontalInput = Input.GetAxis("Horizontal");
 
-        Vector3 direction = new Vector3(horizontalInput, verticalInput);
+        Vector3 direction = new Vector3(horizontalInput, transform.position.y);
 
-        if (_velocity != 0)
+        if (velocity != 0)
         {
             // when idle, direction will be zero, so anything * 0 = 0
-            transform.Translate(direction * _velocity * Time.deltaTime);
+            transform.Translate(direction * velocity * Time.deltaTime);
         }
     }
 
@@ -35,15 +41,28 @@ public class PlayerController : MonoBehaviour
     {
         if (collision.gameObject.tag == "Enemy") 
         { 
-            Debug.Log("funcionou");
+            Debug.Log("funcionou player");
         }
     }
 
     private void OnKeyPressed()
     {
-        if (Input.GetKeyDown(KeyCode.A) || Input.GetKeyDown(KeyCode.W))
+        if (Input.GetKeyDown(KeyCode.Z) || Input.GetKeyDown(KeyCode.X))
         {
-            Debug.Log("TIRO");
+            Shoot();
         }
+    }
+
+    private void Shoot()
+    {
+        Debug.Log("TIRO");
+        Instantiate(
+            bullet,
+            new Vector3(
+                transform.position.x,
+                transform.position.y
+            ),
+            transform.rotation
+        );
     }
 }
