@@ -4,6 +4,10 @@ using UnityEngine;
 
 public class BulletController : MonoBehaviour
 {
+    private float velocity = 5f;
+
+    private Rigidbody2D rb;
+
     public enum Letter
     {
         A,
@@ -14,25 +18,37 @@ public class BulletController : MonoBehaviour
 
     private void Start()
     {
-        // set bullet to destroy itself after 1s
-        Destroy(gameObject, 1.0f);
+        rb = GetComponent<Rigidbody2D>();
+
+        // set bullet to destroy itself after 2s
+        //Destroy(gameObject, 2.0f);
 
         // push bullet to direction it's facing
-        //GetComponent<Rigidbody2D>()
-        //    .AddForce(transform.up * 400);
     }
 
-    private void Update()
-    {
-        //OnKeyPressed();
-    }
-
-    // key A, key W
-    //private void OnKeyPressed()
-    //{ 
-    //    if (Input.GetKeyDown(KeyCode.A))
+    //private void Update()
+    //{
+    //    if (rb.velocity == 0)
     //    {
-    //        Debug.Log("funfou");
+    //        rb.AddForce(transform.forward * 400);
     //    }
+    //    //OnKeyPressed();
     //}
+
+    private void FixedUpdate()
+    {
+        //if (rb.velocity.magnitude < 0.01)
+        //{
+            rb.AddForce(transform.forward * 400);
+            //transform.Translate(1f * velocity * Time.deltaTime);
+        //}
+    }
+
+    private void OnTriggerEnter2D(Collider2D collision)
+    {
+        if (collision.gameObject.tag == "Enemy")
+        {
+            Debug.Log("funcionou bala");
+        }
+    }
 }
