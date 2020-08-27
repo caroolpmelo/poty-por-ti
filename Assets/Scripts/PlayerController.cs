@@ -1,6 +1,4 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
+﻿using UnityEngine;
 
 public class PlayerController : MonoBehaviour
 {
@@ -9,9 +7,6 @@ public class PlayerController : MonoBehaviour
 
     [SerializeField]
     private GameObject bullet;
-
-    //[SerializeField]
-    //private GameObject scoreManager;
 
     private Rigidbody2D rb;
 

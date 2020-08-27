@@ -1,7 +1,4 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using System.Security.Cryptography;
-using UnityEngine;
+﻿using UnityEngine;
 
 public class BackgroundScaler : MonoBehaviour
 {
@@ -15,11 +12,5 @@ public class BackgroundScaler : MonoBehaviour
         float width = height * Screen.width / Screen.height;
         
         transform.localScale = new Vector3(width, height, starScale.z);
-
-    }
-
-    void Update()
-    {
-
     }
 }
