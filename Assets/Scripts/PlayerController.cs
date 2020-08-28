@@ -12,8 +12,8 @@ public class PlayerController : MonoBehaviour
     private GameObject bullet;
 
     private Rigidbody2D rb;
-    private BoxCollider2D box;
-    private bool canJump;
+
+
 
 
 
@@ -21,9 +21,7 @@ public class PlayerController : MonoBehaviour
     {
         rb = transform.GetComponent<Rigidbody2D>();
         transform.position = Vector3.zero; // start player in the center
-        box = transform.GetComponent<BoxCollider2D>();
-        canJump = true;
-
+       
     }
 
     private void Update()
@@ -31,30 +29,6 @@ public class PlayerController : MonoBehaviour
         MovePlayer();
         OnKeyPressed();
 
-        if (Input.GetKeyDown(KeyCode.W))
-        {
-            float jumpVelocity = 100f;
-            rb.velocity = Vector2.up * jumpVelocity;
-
-        }
-    }
-
-
-    void Jump()
-    {
-        if (canJump)
-        {
-            canJump = false;
-            rb.velocity = new Vector2(0f, 5f);
-          
-        }
-
-    }
-       
-
-    private void OnCollisionEnter2D(Collision2D collision)
-    {
-        canJump = true;
     }   
 
 
@@ -100,9 +74,6 @@ public class PlayerController : MonoBehaviour
             transform.rotation
         );
     }
-
-
-
 
 
 }
