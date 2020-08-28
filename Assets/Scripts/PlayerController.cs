@@ -1,7 +1,10 @@
-﻿using UnityEngine;
+﻿using System.Collections.Specialized;
+using System.Security.Cryptography;
+using UnityEngine;
 
 public class PlayerController : MonoBehaviour
 {
+
     private float velocity = 5.0f;
     private float jumpHeight = 10.0f;
 
@@ -9,18 +12,51 @@ public class PlayerController : MonoBehaviour
     private GameObject bullet;
 
     private Rigidbody2D rb;
+    private BoxCollider2D box;
+    private bool canJump;
+
+
 
     private void Start()
     {
-        rb = GetComponent<Rigidbody2D>();
+        rb = transform.GetComponent<Rigidbody2D>();
         transform.position = Vector3.zero; // start player in the center
+        box = transform.GetComponent<BoxCollider2D>();
+        canJump = true;
+
     }
 
     private void Update()
     {
         MovePlayer();
         OnKeyPressed();
+
+        if (Input.GetKeyDown(KeyCode.W))
+        {
+            float jumpVelocity = 100f;
+            rb.velocity = Vector2.up * jumpVelocity;
+
+        }
     }
+
+
+    void Jump()
+    {
+        if (canJump)
+        {
+            canJump = false;
+            rb.velocity = new Vector2(0f, 5f);
+          
+        }
+
+    }
+       
+
+    private void OnCollisionEnter2D(Collision2D collision)
+    {
+        canJump = true;
+    }   
+
 
     private void MovePlayer()
     {
@@ -39,8 +75,8 @@ public class PlayerController : MonoBehaviour
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        if (collision.gameObject.tag == "Enemy") 
-        { 
+        if (collision.gameObject.tag == "Enemy")
+        {
             Debug.Log("funcionou player");
         }
     }
@@ -64,4 +100,24 @@ public class PlayerController : MonoBehaviour
             transform.rotation
         );
     }
+
+
+
+
+
 }
+
+        
+
+
+
+
+
+
+
+
+
+
+
+
+
