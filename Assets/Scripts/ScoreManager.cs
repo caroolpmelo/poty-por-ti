@@ -15,7 +15,7 @@ public class ScoreManager : MonoBehaviour
     {
         if (Instance != null && Instance != this)
         {
-            Destroy(this.gameObject);
+            Destroy(gameObject);
         }
         else
         {
@@ -26,7 +26,7 @@ public class ScoreManager : MonoBehaviour
     void Start()
     {
         scoreTxt.text = "Score: " + score;
-        hiscoreTxt.text = "Hiscore: " + hiscore;
+        hiscoreTxt.text = "Target: " + hiscore;
     }
 
     void Update()
@@ -47,7 +47,7 @@ public class ScoreManager : MonoBehaviour
     private void AddHiscore()
     {
         hiscore += 100;
-        hiscoreTxt.text = "Hiscore: " + hiscore;
+        hiscoreTxt.text = "Target: " + hiscore;
     }
 
     public static ScoreManager Instance { get; private set; }

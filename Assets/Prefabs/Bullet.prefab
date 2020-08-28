@@ -46,6 +46,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4b711e3fec41fdb408f62497bda3caf1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  musicalType: 0
+  sound: {fileID: 0}
+  soundA: {fileID: 8300000, guid: 605ed5bc447da4643bc2b2d0671cfe9f, type: 3}
+  soundW: {fileID: 8300000, guid: e55ebb8c21df2e24693ec01a71d3d968, type: 3}
+  soundS: {fileID: 8300000, guid: 0a887af867df97048af15b43ab2c8236, type: 3}
+  soundD: {fileID: 8300000, guid: 628e60b93d8af95488616fa189fea89e, type: 3}
 --- !u!212 &5860689647293535936
 SpriteRenderer:
   m_ObjectHideFlags: 0
