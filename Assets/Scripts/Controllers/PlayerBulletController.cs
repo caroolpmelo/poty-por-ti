@@ -1,6 +1,6 @@
 ﻿using UnityEngine;
 
-public class BulletController : MonoBehaviour
+public class PlayerBulletController : MonoBehaviour
 {
     private ScoreManager scoreManager = ScoreManager.Instance;
     private AudioManager audioManager = AudioManager.Instance;
@@ -22,7 +22,7 @@ public class BulletController : MonoBehaviour
     {
         musicalType = (Letter)Random.Range(0, 4); // set bullet type
 
-        //Destroy(gameObject, 2.0f); // destroy itself after seconds
+        Destroy(gameObject, 2.0f); // destroy itself after seconds
         PlayBulletSound();
     }
 

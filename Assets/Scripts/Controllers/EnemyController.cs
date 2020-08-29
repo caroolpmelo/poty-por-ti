@@ -6,28 +6,33 @@ public class EnemyController : MonoBehaviour
     // bullet values
     private int bulletSpeed = 400;
 
-    // enemy colored sprites
+    // enemy colored states
     [SerializeField]
-    private Sprite enemyBlackSprite;
+    private bool isBlack;
     [SerializeField]
-    private Sprite enemyBlueSprite;
+    private bool isBlue;
     [SerializeField]
-    private Sprite enemyRedSprite;
+    private bool isRed;
     [SerializeField]
-    private Sprite enemyWhiteSprite;
+    private bool isWhite;
     [SerializeField]
-    private Sprite enemyYellowSprite;
+    private bool isYellow;
 
     [SerializeField]
     private GameObject bullet;
 
     private void Start()
     {
+    }
+
+    private void FixedUpdate()
+    {
         StartCoroutine(ShootCoroutine());
     }
 
     private IEnumerator ShootCoroutine()
     {
+
         Rigidbody2D bulletRb = bullet.GetComponent<Rigidbody2D>();
 
         Instantiate(
@@ -42,6 +47,7 @@ public class EnemyController : MonoBehaviour
         // go always to left x axis
         bulletRb.AddForce(transform.right * -1 * bulletSpeed);
 
-        yield return new WaitForSecondsRealtime(2.0f); // TODO: not working
+        yield return new WaitForSeconds(2.0f); // wait 2s to shoot
+        //yield return null;
     }
 }

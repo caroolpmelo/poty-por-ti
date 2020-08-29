@@ -1265,8 +1265,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 92652d296469ef747b121f0ba3cbf05f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  enemySprite: {fileID: 0}
-  bullet: {fileID: 5860689647293535938, guid: 8ba177555b2bef3439a046419b45b32d, type: 3}
+  isBlack: 0
+  isBlue: 0
+  isRed: 0
+  isWhite: 0
+  isYellow: 0
+  bullet: {fileID: 4867328400450752517, guid: 36968d0ff97ec0a449475451ba49461b, type: 3}
 --- !u!1 &1857301569
 GameObject:
   m_ObjectHideFlags: 0
