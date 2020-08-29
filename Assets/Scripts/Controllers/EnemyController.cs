@@ -45,6 +45,12 @@ public class EnemyController : MonoBehaviour
         StartCoroutine(MoveEnemyCoroutine());
     }
 
+    private void OnCollisionEnter2D(Collision2D collision)
+    {
+        if (collision.gameObject.tag == "Wall") // ignores wall
+            Physics2D.IgnoreCollision(collision.collider, collision.otherCollider);
+    }
+
     private IEnumerator MoveEnemyCoroutine()
     {
         yield return new WaitForSeconds(1.0f);

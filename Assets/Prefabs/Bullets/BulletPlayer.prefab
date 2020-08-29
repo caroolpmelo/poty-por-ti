@@ -47,6 +47,11 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   musicalType: 0
+  musicSprites:
+  - {fileID: 21300000, guid: 5036a8ead374b7a44bc6a748072881c1, type: 3}
+  - {fileID: 21300000, guid: e79d4fb2f73055741a614c36a9bbd363, type: 3}
+  - {fileID: 21300000, guid: d1f8d295fdfdd7c41ad1677f5020e66a, type: 3}
+  - {fileID: 21300000, guid: 3a79f0cd68cccfe49b3076bc8709cb25, type: 3}
 --- !u!212 &5860689647293535936
 SpriteRenderer:
   m_ObjectHideFlags: 0
