@@ -3,6 +3,13 @@ using UnityEngine;
 
 public class EnemyController : MonoBehaviour
 {
+    private Rigidbody2D enemyRb;
+    private SpriteRenderer sp;
+
+    // enemy movement values
+    private float enemySpeed = 1.0f;
+    private Vector3 enemySpawnPoint;
+
     // bullet values
     private int bulletSpeed = 400;
 
@@ -23,16 +30,29 @@ public class EnemyController : MonoBehaviour
 
     private void Start()
     {
+        enemyRb = GetComponent<Rigidbody2D>();
+        // TODO: change enemy sprite when it receives damage
+        sp = GetComponent<SpriteRenderer>();
+
+        enemySpawnPoint = new Vector3(10.0f, transform.position.y);
+        transform.position = enemySpawnPoint;
+
+        StartCoroutine(ShootCoroutine());
     }
 
     private void FixedUpdate()
     {
-        StartCoroutine(ShootCoroutine());
+        StartCoroutine(MoveEnemyCoroutine());
+    }
+
+    private IEnumerator MoveEnemyCoroutine()
+    {
+        yield return new WaitForSeconds(1.0f);
+        enemyRb.velocity = Vector3.left * enemySpeed;
     }
 
     private IEnumerator ShootCoroutine()
     {
-
         Rigidbody2D bulletRb = bullet.GetComponent<Rigidbody2D>();
 
         Instantiate(
