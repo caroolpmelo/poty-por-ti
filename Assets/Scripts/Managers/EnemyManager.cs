@@ -27,7 +27,8 @@ public class EnemyManager : MonoBehaviour
         // generate enemy out of screen bounds
         enemySpawnPoint = new Vector3(9.0f, transform.position.y);
 
-        InvokeRepeating("GenerateRandomEnemy", 2.0f, 3.0f);
+        //InvokeRepeating("GenerateRandomEnemy", 2.0f, 3.0f);
+        GenerateRandomEnemy();
     }
 
     private void Update()
