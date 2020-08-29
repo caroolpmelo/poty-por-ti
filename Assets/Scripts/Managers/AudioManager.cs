@@ -16,7 +16,7 @@ public class AudioManager : MonoBehaviour
     {
         if (Instance != null && Instance != this)
         {
-            Destroy(this.gameObject);
+            Destroy(gameObject);
         }
         else
         {
@@ -26,10 +26,10 @@ public class AudioManager : MonoBehaviour
 
     private void Start()
     {
-        if (bgMusic)
-            AudioSource.PlayClipAtPoint(bgMusic, Camera.main.transform.position);
-        if (ambience)
-            AudioSource.PlayClipAtPoint(ambience, Camera.main.transform.position);
+        //if (bgMusic)
+        //    AudioSource.PlayClipAtPoint(bgMusic, Camera.main.transform.position);
+        //if (ambience)
+        //    AudioSource.PlayClipAtPoint(ambience, Camera.main.transform.position);
     }
 
     public AudioClip GetRandomSound()
