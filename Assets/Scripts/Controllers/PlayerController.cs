@@ -13,13 +13,14 @@ public class PlayerController : MonoBehaviour
 
     // bullet values
     private float bulletSpeed = 0.8f;
+    private float shootCooldown = 2.0f;
 
     // inputs
     private float jumpInput;
-    private float fire1Input;
-    private float fire2Input;
-    private float fire3Input;
-    private float fire4Input;
+    //private float fire1Input;
+    //private float fire2Input;
+    //private float fire3Input;
+    //private float fire4Input;
     private float horizontalInput;
 
     [SerializeField]
@@ -36,10 +37,11 @@ public class PlayerController : MonoBehaviour
     private void Update()
     {
         jumpInput = Input.GetAxis("Jump");
-        fire1Input = Input.GetAxis("Fire1");
-        fire1Input = Input.GetAxis("Fire2");
-        fire1Input = Input.GetAxis("Fire3");
-        fire1Input = Input.GetAxis("Fire4");
+        // TODO: fire input not working
+        //fire1Input = Input.GetAxis("Fire1");
+        //fire1Input = Input.GetAxis("Fire2");
+        //fire1Input = Input.GetAxis("Fire3");
+        //fire1Input = Input.GetAxis("Fire4");
         horizontalInput = Input.GetAxis("Horizontal");
     }
 
@@ -95,10 +97,10 @@ public class PlayerController : MonoBehaviour
     private void OnShoot()
     {
         if (
-            fire1Input != 0 ||
-            fire2Input != 0 ||
-            fire3Input != 0 ||
-            fire4Input != 0
+            Input.GetKeyDown(KeyCode.Z) ||
+            Input.GetKeyDown(KeyCode.X) ||
+            Input.GetKeyDown(KeyCode.C) ||
+            Input.GetKeyDown(KeyCode.V)
         )
             StartCoroutine(OnShootCoroutine());
     }
@@ -139,6 +141,7 @@ public class PlayerController : MonoBehaviour
         else // go to left x axis
             bulletRb.AddForce(transform.right * -1 * bulletSpeed * Time.deltaTime);
 
+        new WaitForSecondsRealtime(shootCooldown);
         yield return new WaitForSeconds(2.0f);
     }
 }

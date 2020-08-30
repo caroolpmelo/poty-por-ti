@@ -47,6 +47,7 @@ public class EnemyManager : MonoBehaviour
     {
         if (enemyDefeated)
         {
+        //TODO: not working, enemy changing sprite
             // gets current position to spawn defeated enemy
             Vector3 currentPosition = currentEnemy.transform.position;
 

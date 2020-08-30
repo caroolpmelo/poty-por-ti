@@ -47,7 +47,8 @@ public class PlayerBulletController : BulletController
             scoreManager.AddScore();
 
             // change enemy sprite
-            enemyManager.SetDefeatSprite(gameObject);
+            //enemyManager.SetDefeatSprite(gameObject);
+            Destroy(collision.gameObject);
         }
     }
 
