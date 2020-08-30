@@ -1,10 +1,11 @@
 ﻿using System.Collections.Generic;
 using UnityEngine;
 
-public class PlayerBulletController : MonoBehaviour
+public class PlayerBulletController : BulletController
 {
     private ScoreManager scoreManager = ScoreManager.Instance;
     private AudioManager audioManager = AudioManager.Instance;
+    private EnemyManager enemyManager = EnemyManager.Instance;
 
     private SpriteRenderer sp;
 
@@ -29,10 +30,12 @@ public class PlayerBulletController : MonoBehaviour
     {
         sp = GetComponent<SpriteRenderer>();
 
-        musicalType = (Letter)Random.Range(0, 4); // set bullet type
-        sp.sprite = musicSprites[(int)musicalType]; // set sprites
+        int lettersQuantity = System.Enum.GetValues(typeof(Letter)).Length;
+        musicalType = (Letter)Random.Range(0, lettersQuantity); // set bullet type
 
-        Destroy(gameObject, 2.0f); // destroy itself after seconds
+        sp.sprite = musicSprites[(int)musicalType]; // set sprites
+        sp.transform.localScale = new Vector3(0.05f, 0.05f); // scale obj (it's big)
+
         PlayBulletSound();
     }
 
@@ -41,11 +44,10 @@ public class PlayerBulletController : MonoBehaviour
         if (collision.gameObject.tag == "Enemy")
         {
             Destroy(gameObject); // destroy bullet
-            Destroy(collision.gameObject); // destroy enemy
-
-            // TODO: change enemy color based on damage
-
             scoreManager.AddScore();
+
+            // change enemy sprite
+            enemyManager.SetDefeatSprite(gameObject);
         }
     }
 

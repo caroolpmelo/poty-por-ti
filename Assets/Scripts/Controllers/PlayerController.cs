@@ -7,17 +7,19 @@ public class PlayerController : MonoBehaviour
     private SpriteRenderer sp;
 
     // player movement values
-    private float initialY;
     private bool facingRight;
     private float jumpHeight = 0.4f;
     private float playerSpeed = 4.0f;
 
     // bullet values
-    private int bulletSpeed = 400;
+    private float bulletSpeed = 0.8f;
 
     // inputs
     private float jumpInput;
-    private float verticalInput;
+    private float fire1Input;
+    private float fire2Input;
+    private float fire3Input;
+    private float fire4Input;
     private float horizontalInput;
 
     [SerializeField]
@@ -26,16 +28,18 @@ public class PlayerController : MonoBehaviour
     private void Start()
     {
         facingRight = true;
-        playerRb = GetComponent<Rigidbody2D>();
         sp = GetComponent<SpriteRenderer>();
-        //initialY = -1.93f;
+        playerRb = GetComponent<Rigidbody2D>();
         //transform.position = new Vector3(-7f, initialY);
     }
 
     private void Update()
     {
         jumpInput = Input.GetAxis("Jump");
-        verticalInput = Input.GetAxis("Vertical");
+        fire1Input = Input.GetAxis("Fire1");
+        fire1Input = Input.GetAxis("Fire2");
+        fire1Input = Input.GetAxis("Fire3");
+        fire1Input = Input.GetAxis("Fire4");
         horizontalInput = Input.GetAxis("Horizontal");
     }
 
@@ -43,7 +47,8 @@ public class PlayerController : MonoBehaviour
     {
         MovePlayer();
         FlipPlayerSpriteX();
-        OnKeyPressed();
+
+        OnShoot();
     }
 
     private void OnCollisionEnter2D(Collision2D collision)
@@ -51,10 +56,6 @@ public class PlayerController : MonoBehaviour
         if (collision.gameObject.tag == "Enemy")
         {
             Debug.Log("PERDEU atingida por inimigo");
-        }
-        if (collision.gameObject.tag == "Bullet")
-        {
-            Debug.Log("PERDEU atingida por fogo");
         }
     }
 
@@ -91,43 +92,55 @@ public class PlayerController : MonoBehaviour
             sp.flipX = true;
     }
 
-    private void OnKeyPressed()
+    private void OnShoot()
     {
         if (
-            Input.GetKeyDown(KeyCode.Z) ||
-            Input.GetKeyDown(KeyCode.X) ||
-            Input.GetKeyDown(KeyCode.C) ||
-            Input.GetKeyDown(KeyCode.V)
+            fire1Input != 0 ||
+            fire2Input != 0 ||
+            fire3Input != 0 ||
+            fire4Input != 0
         )
-        {
-            StartCoroutine(ShootCoroutine());
-        }
+            StartCoroutine(OnShootCoroutine());
+    }
+
+    private IEnumerator OnShootCoroutine()
+    {
+        StartCoroutine(ShootCoroutine());
+
+        yield return new WaitForSeconds(2.0f);
     }
 
     private IEnumerator ShootCoroutine()
     {
-        Rigidbody2D bulletRb = bullet.GetComponent<Rigidbody2D>();
-
-        Instantiate(
-            bullet,
-            new Vector3(
-                transform.position.x + 1.0f,
+        // change bullet position following player orientation
+        Vector3 bulletPosition;
+        if (facingRight)
+            bulletPosition = new Vector3(
+                transform.position.x + 1.5f,
                 transform.position.y
-            ),
+            );
+        else
+            bulletPosition = new Vector3(
+                transform.position.x - 1.5f,
+                transform.position.y
+            );
+
+        // creates bullet
+        GameObject newBullet = Instantiate(
+            bullet,
+            bulletPosition,
             transform.rotation
         );
 
-        if (facingRight)
-            // go to right x axis
-            bulletRb.AddForce(transform.right * bulletSpeed);
-        if (!facingRight)
-            // go to left x axis
-            bulletRb.AddForce(transform.right * -1 * bulletSpeed);
+        // makes bullet move
+        Rigidbody2D bulletRb = newBullet.GetComponent<Rigidbody2D>();
+        if (facingRight) // go to right x axis
+            bulletRb.AddForce(transform.right * bulletSpeed * Time.deltaTime);
+        else // go to left x axis
+            bulletRb.AddForce(transform.right * -1 * bulletSpeed * Time.deltaTime);
 
-        yield return new WaitForSecondsRealtime(2.0f); // TODO: not working
+        yield return new WaitForSeconds(2.0f);
     }
-
-
 }
 
         

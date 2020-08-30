@@ -131,7 +131,7 @@ PrefabInstance:
     - target: {fileID: 3202459802963884429, guid: 62d895e830184b644baf69d01a9d74bb,
         type: 3}
       propertyPath: m_LocalPosition.x
-      value: 1.078
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 3202459802963884429, guid: 62d895e830184b644baf69d01a9d74bb,
         type: 3}
@@ -186,7 +186,12 @@ PrefabInstance:
     - target: {fileID: 3202459802963884429, guid: 62d895e830184b644baf69d01a9d74bb,
         type: 3}
       propertyPath: m_LocalScale.x
-      value: 20.204748
+      value: 30
+      objectReference: {fileID: 0}
+    - target: {fileID: 3202459802963884429, guid: 62d895e830184b644baf69d01a9d74bb,
+        type: 3}
+      propertyPath: m_LocalScale.y
+      value: 14.5
       objectReference: {fileID: 0}
     - target: {fileID: 8068329293318967358, guid: 62d895e830184b644baf69d01a9d74bb,
         type: 3}
@@ -1447,9 +1452,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9f24a54c8c11c1243b748372d5292f8b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  enemyDefeated: {fileID: 7884091055095147823, guid: 64d79e0a4802e824db90c9976ad7fc53,
+    type: 3}
   enemyColors:
   - {fileID: 8229472758594526426, guid: 734ebae6fe1bd5f439c0267d5c168a5a, type: 3}
-  - {fileID: 7884091055095147823, guid: 64d79e0a4802e824db90c9976ad7fc53, type: 3}
   - {fileID: 7132864040379399736, guid: f07980f494889fe4a99554adb6e89afd, type: 3}
   - {fileID: 5654235037033126544, guid: 66b9b752d078535479c9dec9c1bfd568, type: 3}
   - {fileID: 8829783321386528555, guid: 5768cd5643e4b3e428ff6a9c28a54f75, type: 3}

@@ -34,7 +34,7 @@ public class AudioManager : MonoBehaviour
 
     public AudioClip GetRandomSound()
     {
-        return sounds[Random.Range(0, 4)];
+        return sounds[Random.Range(0, sounds.Count)];
     }
 
     public static AudioManager Instance { get; private set; }

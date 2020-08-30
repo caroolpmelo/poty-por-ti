@@ -73,15 +73,15 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
-  m_Sprite: {fileID: 10913, guid: 0000000000000000f000000000000000, type: 0}
-  m_Color: {r: 1, g: 0, b: 0, a: 1}
+  m_Sprite: {fileID: 0}
+  m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
   m_Size: {x: 0.2, y: 0.2}
   m_AdaptiveModeThreshold: 0.5
   m_SpriteTileMode: 0
-  m_WasSpriteAssigned: 1
+  m_WasSpriteAssigned: 0
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
 --- !u!114 &7602807392927860145
@@ -96,6 +96,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e5762b7508ecd8a41bf133e954f65a1f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  fireSprites:
+  - {fileID: 21300000, guid: b937db329c16cec419e9c9d0b21aa187, type: 3}
+  - {fileID: 21300000, guid: 8d5339d4373066d48a55a18c2250a615, type: 3}
 --- !u!50 &4867328400450752514
 Rigidbody2D:
   serializedVersion: 4
