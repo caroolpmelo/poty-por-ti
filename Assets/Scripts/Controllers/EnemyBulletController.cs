@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class EnemyBulletController : BulletController
 {
@@ -12,6 +13,8 @@ public class EnemyBulletController : BulletController
 
     private void Start()
     {
+        Destroy(gameObject, 2.0f); // destroy itself after seconds
+
         sp = GetComponent<SpriteRenderer>();
 
         sp.sprite = fireSprites[Random.Range(0, fireSprites.Count)]; // set sprites
@@ -25,6 +28,10 @@ public class EnemyBulletController : BulletController
             Destroy(gameObject); // destroy bullet
             // TODO: game over screen
             Debug.Log("PERDEU atingida por fogo");
+
+            SceneManager.LoadScene("GameOver", LoadSceneMode.Single);
         }
+        if (collision.gameObject.tag == "Wall")
+            Destroy(gameObject);
     }
 }

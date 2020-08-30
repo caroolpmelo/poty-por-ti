@@ -28,8 +28,8 @@ public class EnemyManager : MonoBehaviour
         // generate enemy out of screen bounds
         enemySpawnPoint = new Vector3(9.0f, transform.position.y);
 
-        //InvokeRepeating("GenerateRandomEnemy", 2.0f, 3.0f);
-        GenerateRandomEnemy();
+        InvokeRepeating("GenerateRandomEnemy", 2.0f, 4.0f);
+        //GenerateRandomEnemy();
     }
 
     private void GenerateRandomEnemy()
@@ -37,7 +37,7 @@ public class EnemyManager : MonoBehaviour
         int randomIndex = Random.Range(0, enemyColors.Count);
 
         Instantiate(
-            enemyColors[0],
+            enemyColors[randomIndex],
             enemySpawnPoint - Vector3.right,
             transform.rotation
         );

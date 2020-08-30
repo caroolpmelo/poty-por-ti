@@ -6,7 +6,7 @@ public class BulletController : MonoBehaviour
 {
     private void Start()
     {
-        Destroy(gameObject, 3.0f); // destroy itself after seconds
+        Destroy(gameObject, 2.0f); // destroy itself after seconds
     }
 
     private void FixedUpdate()
@@ -18,10 +18,11 @@ public class BulletController : MonoBehaviour
     {
         // ignores physical collision
         if (
-            collision.gameObject.tag == "Wall" || 
-            collision.gameObject.tag == "Player" || 
+            collision.gameObject.tag == "Wall" ||
+            collision.gameObject.tag == "Player" ||
             collision.gameObject.tag == "Enemy"
         )
+            Destroy(gameObject);
             Physics2D.IgnoreCollision(collision.collider, collision.otherCollider);
     }
 

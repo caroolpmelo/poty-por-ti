@@ -1,5 +1,6 @@
 ﻿using System.Collections;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class PlayerController : MonoBehaviour
 {
@@ -57,7 +58,11 @@ public class PlayerController : MonoBehaviour
     {
         if (collision.gameObject.tag == "Enemy")
         {
+            Physics2D.IgnoreCollision(collision.collider, collision.otherCollider);
             Debug.Log("PERDEU atingida por inimigo");
+            Destroy(collision.gameObject);
+
+            SceneManager.LoadScene("GameOver", LoadSceneMode.Single);
         }
     }
 

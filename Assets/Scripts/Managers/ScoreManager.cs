@@ -1,5 +1,6 @@
 ﻿using UnityEngine;
 using UnityEngine.UI;
+using UnityEngine.SceneManagement;
 
 public class ScoreManager : MonoBehaviour
 {
@@ -35,6 +36,9 @@ public class ScoreManager : MonoBehaviour
         {
             Debug.Log("VENCEU");
             AddHiscore();
+
+            Time.timeScale = 0; // pause game
+            SceneManager.LoadScene("Victory", LoadSceneMode.Additive);
         }
     }
 

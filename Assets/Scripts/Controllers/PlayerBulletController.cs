@@ -28,6 +28,8 @@ public class PlayerBulletController : BulletController
 
     private void Start()
     {
+        Destroy(gameObject, 3.0f); // destroy itself after seconds
+
         sp = GetComponent<SpriteRenderer>();
 
         int lettersQuantity = System.Enum.GetValues(typeof(Letter)).Length;
@@ -50,6 +52,8 @@ public class PlayerBulletController : BulletController
             //enemyManager.SetDefeatSprite(gameObject);
             Destroy(collision.gameObject);
         }
+        if (collision.gameObject.tag == "Wall")
+            Destroy(gameObject);
     }
 
     private void PlayBulletSound()
