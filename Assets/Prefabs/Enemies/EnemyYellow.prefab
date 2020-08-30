@@ -149,7 +149,7 @@ MonoBehaviour:
   isRed: 0
   isWhite: 0
   isYellow: 1
-  bullet: {fileID: 4867328400450752517, guid: 36968d0ff97ec0a449475451ba49461b, type: 3}
+  bullet: {fileID: 4867328400450752517, guid: f3ed05379bd9c3142ad7b91f8931ad1c, type: 3}
 --- !u!95 &8829783321386528561
 Animator:
   serializedVersion: 3

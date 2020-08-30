@@ -5,7 +5,7 @@ using UnityEngine.SceneManagement;
 public class ScoreManager : MonoBehaviour
 {
     private int score = 0;
-    private int hiscore = 100; // min score
+    private int hiscore = 50; // min score
 
     [SerializeField]
     private Text scoreTxt;
