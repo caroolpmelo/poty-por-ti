@@ -3,15 +3,17 @@ using UnityEngine;
 
 public class EnemyController : MonoBehaviour
 {
+    private EnemyManager enemyManager = EnemyManager.Instance;
+
     private Rigidbody2D enemyRb;
     private SpriteRenderer sp;
 
     // enemy movement values
-    private float enemySpeed = 1.0f;
+    private float enemySpeed = 0.8f;
     private Vector3 enemySpawnPoint;
 
     // bullet values
-    private int bulletSpeed = 400;
+    private float bulletSpeed = 0.8f;
 
     // enemy colored states
     [SerializeField]
@@ -31,7 +33,6 @@ public class EnemyController : MonoBehaviour
     private void Start()
     {
         enemyRb = GetComponent<Rigidbody2D>();
-        // TODO: change enemy sprite when it receives damage
         sp = GetComponent<SpriteRenderer>();
 
         enemySpawnPoint = new Vector3(10.0f, transform.position.y);
@@ -43,31 +44,51 @@ public class EnemyController : MonoBehaviour
     private void FixedUpdate()
     {
         StartCoroutine(MoveEnemyCoroutine());
+        IsOutOfBounds();
+    }
+
+    private void OnCollisionEnter2D(Collision2D collision)
+    {
+        // ignores wall and if it's blue just go till the end
+        if (collision.gameObject.tag == "Wall" || isBlue)
+            Physics2D.IgnoreCollision(collision.collider, collision.otherCollider);
     }
 
     private IEnumerator MoveEnemyCoroutine()
     {
         yield return new WaitForSeconds(1.0f);
         enemyRb.velocity = Vector3.left * enemySpeed;
+        enemyRb.rotation = 0;
     }
 
     private IEnumerator ShootCoroutine()
     {
-        Rigidbody2D bulletRb = bullet.GetComponent<Rigidbody2D>();
+        while (true)
+        {
+            if (!isBlue)
+            {
+                yield return new WaitForSeconds(2.0f); // wait 2s to shoot
+            
+                GameObject newBullet = Instantiate(
+                    bullet,
+                    new Vector3(
+                        transform.position.x - 2.0f,
+                        transform.position.y
+                    ),
+                    transform.rotation
+                );
+            
+                Rigidbody2D bulletRb = newBullet.GetComponent<Rigidbody2D>();
+                // go always to left x axis
+                bulletRb.AddForce(transform.right * -1 * bulletSpeed * Time.deltaTime);
+            }
+        }
+    }
 
-        Instantiate(
-            bullet,
-            new Vector3(
-                transform.position.x - 1.0f,
-                transform.position.y
-            ),
-            transform.rotation
-        );
-
-        // go always to left x axis
-        bulletRb.AddForce(transform.right * -1 * bulletSpeed);
-
-        yield return new WaitForSeconds(2.0f); // wait 2s to shoot
-        //yield return null;
+    private void IsOutOfBounds()
+    {
+        // enemy is out of screen bounds
+        if (transform.position.x <= -10.0f)
+            Destroy(gameObject);
     }
 }
