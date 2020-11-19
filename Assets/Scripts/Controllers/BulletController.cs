@@ -4,6 +4,27 @@ using UnityEngine;
 
 public class BulletController : MonoBehaviour
 {
+    private enum color
+    {
+        Black = 0,
+        Blue = 1,
+        Red = 2,
+        White = 3,
+        Yellow = 4
+    }
+
+    private int bulletColorIndex = 0;
+
+    public int BulletColor
+    {
+        get { return this.bulletColorIndex; }
+
+        private set
+        {
+            // if ()
+        }
+    }
+
     private void Start()
     {
         Destroy(gameObject, 2.0f); // destroy itself after seconds

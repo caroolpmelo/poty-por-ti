@@ -27,6 +27,37 @@ public class EnemyController : MonoBehaviour
     [SerializeField]
     private bool isYellow;
 
+    private string enemyColor = "";
+
+    public string EnemyColor
+    {
+        get { return this.enemyColor; }
+
+        private set
+        {
+            if (isBlack)
+            {
+                this.enemyColor = "Black";
+            } 
+            else if (isBlue)
+            {
+                this.enemyColor = "Blue";
+            } 
+            else if (isRed)
+            {
+                this.enemyColor = "Red";
+            } 
+            else if (isWhite)
+            {
+                this.enemyColor = "White";
+            } 
+            else if (isYellow)
+            {
+                this.enemyColor = "Yellow";
+            }
+        }
+    }
+
     [SerializeField]
     private GameObject bullet;
 

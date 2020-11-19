@@ -11,6 +11,10 @@ public class EnemyManager : MonoBehaviour
 
     private Vector3 enemySpawnPoint;
 
+    private bool hasRandomSpawnStarted = false;
+    private float randomSpawnTiming = 4.0f;
+    private float[] spawnTimingArr = {2.0f, 3.0f, 4.0f, 5.0f};
+
     private void Awake()
     {
         if (Instance != null && Instance != this)
@@ -28,12 +32,16 @@ public class EnemyManager : MonoBehaviour
         // generate enemy out of screen bounds
         enemySpawnPoint = new Vector3(9.0f, transform.position.y);
 
-        InvokeRepeating("GenerateRandomEnemy", 2.0f, 4.0f);
+        InvokeRepeating("GenerateRandomEnemy", 2.0f, randomSpawnTiming);
         //GenerateRandomEnemy();
     }
 
     private void GenerateRandomEnemy()
     {
+        if (hasRandomSpawnStarted) {
+            // WaitForSeconds()
+        }
+
         int randomIndex = Random.Range(0, enemyColors.Count);
 
         Instantiate(
@@ -41,6 +49,9 @@ public class EnemyManager : MonoBehaviour
             enemySpawnPoint - Vector3.right,
             transform.rotation
         );
+
+        randomSpawnTiming = spawnTimingArr[Random.Range(0, spawnTimingArr.Length)];
+        hasRandomSpawnStarted = true;
     }
 
     public void SetDefeatSprite(GameObject currentEnemy)
