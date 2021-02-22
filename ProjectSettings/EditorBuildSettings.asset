@@ -9,6 +9,9 @@ EditorBuildSettings:
     path: Assets/Scenes/Menu.unity
     guid: 2bac178b48c20d146afffa074f36f73c
   - enabled: 1
+    path: Assets/Scenes/StoryBoard.unity
+    guid: 0403f68a13709c9439f62fb79963dd4f
+  - enabled: 1
     path: Assets/Scenes/MainGame.unity
     guid: 7487268a94cc9db4e993ac635da672de
   - enabled: 1
@@ -17,7 +20,4 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/Victory.unity
     guid: 47244e7c5eee4744c9a7b459b19b8043
-  - enabled: 1
-    path: Assets/Scenes/StoryBoard.unity
-    guid: 0403f68a13709c9439f62fb79963dd4f
   m_configObjects: {}
